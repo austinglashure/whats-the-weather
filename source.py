@@ -8,7 +8,7 @@ print("Requests: {}".format(requests.__version__))
 print("Beautiful Soup: {}".format(bs4.__version__))
 
 # creates requests object and verifies link is valid
-url = "https://www.google.com"  # will eventually be page with requisite weather data
+url = "https://orange.weatherstem.com/ucf"  # will page with requisite weather data
 result = requests.get(url)  # creates requests object
 print("URL: {}".format(url))
 
@@ -24,5 +24,4 @@ else:
 source = result.content
 
 # creates soup object from web source
-soup = bs4.BeautifulSoup(source, 'lxml')
-
+soup = bs4.BeautifulSoup(source, 'html.parser')
