@@ -1,5 +1,6 @@
 # imported scraping modules
 from googlesearch import search
+from datetime import datetime, date
 import requests
 import bs4
 
@@ -25,30 +26,26 @@ foo = soup.find('div', class_='CurrentConditions--primary--2SVPh')
 fub = foo.text
 parts = fub.split('°')
 # said relevant info
-temperature = parts[0]
+temperature = parts[0] + " degrees"
 summary = parts[1]
-# get rain chance
-precip_temp = soup.find('div', class_='CurrentConditions--precipValue--3nxCj').text
-aye = precip_temp.index('%')
-precipitation_chance = precip_temp[0, aye+1]
-print(precipitation_chance)
+precip_chance = soup.find('div', class_='CurrentConditions--precipValue--3nxCj').text
+now = datetime.now()
+time_and_date = now.strftime("%d/%m/%Y %H:%M:%S")
 
+# put it into a text file for posterity
+file = open('weather.txt', 'a+')
+file.write(time_and_date)
+file.write("\n")
+file.write(temperature)
+file.write("\n")
+file.write(precip_chance)
+file.write("\n")
+file.write(summary)
+file.write("\n")
+file.write("--------------")
 '''
-result = requests.get(url)  # creates requests object
-print("URL: {}".format(url))
-
-url_status = result.status_code  # creates status code variable
-print("Status Code: {}".format(url_status))
-if url_status >= 200 and url_status < 300:
-    # successful status codes for http begin with 2--
-    print("Link is valid")
-else:
-    print("Error with the link")
-
-# creates soup object from web source
-soup = bs4.BeautifulSoup(result.content, 'lxml')
-dd_tags = soup.find_all('dd')
-for tag in dd_tags:
-    print(tag)
-'''
- 
+file.writelines(temperature)
+file.writelines(precip_chance)
+file.writelines(summary)
+file.writelines("\n")'''
+file.close()
