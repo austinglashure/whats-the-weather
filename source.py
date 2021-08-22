@@ -44,9 +44,4 @@ file.write("\n")
 file.write(summary)
 file.write("\n")
 file.write("--------------")
-'''
-file.writelines(temperature)
-file.writelines(precip_chance)
-file.writelines(summary)
-file.writelines("\n")'''
 file.close()
