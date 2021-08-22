@@ -34,6 +34,7 @@ time_and_date = now.strftime("%d/%m/%Y %H:%M:%S")
 
 # put it into a text file for posterity
 file = open('weather.txt', 'a+')
+file.write('\n')
 file.write(time_and_date)
 file.write("\n")
 file.write(temperature)
